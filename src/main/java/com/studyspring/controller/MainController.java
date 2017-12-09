@@ -1,10 +1,15 @@
 package com.studyspring.controller;
 
+import static org.hamcrest.CoreMatchers.is;
+
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.studyspring.service.UserInfoService;
 import com.studyspring.vo.UserInfoEnrollRequestVO;
+import com.studyspring.vo.UserInfoVO;
 
 /**
  * Handles requests for the application home page.
@@ -58,17 +64,52 @@ public class MainController {
 		userInfoEnrollRequestVO.setUserAge(25);
 		userInfoEnrollRequestVO.setUserImage("sampleimage1.png");
 		
+		/*
 		if(userInfoService.enrollUserInfoService(userInfoEnrollRequestVO)==1){
 			result.put("flag", "success");
 		} else {
 			result.put("flag", "fail");
 		}
-		
+		*/
 		
 		mv.addObject("result", result);
 		
+		// Study 5
+		boolean isCheck = true;
+		
+		// 서비스 호출하는 부분 
+		if(isCheck == true){
+			Map<String, Object> retVal = new HashMap<String, Object>();
+			
+			retVal.put("type", 2);
+			
+			mv.addObject("retType", retVal);
+		}
+		
+		mv.addObject("value", isCheck);
+		
+		// Study 6
+		List<UserInfoVO> listuser = userInfoService.getUserInfoListService();
+		
+		System.out.println("user count : " + listuser.size());
+		
+		mv.addObject("listuser", listuser);
+		
 		return mv;
 		
+	}
+	
+	// Study 8
+	
+	@RequestMapping(value = "/samplepage.do", method = RequestMethod.POST)
+	public ModelAndView sample(ModelAndView mv, HttpServletRequest request){
+		mv.setViewName("samplepage");
+				
+		mv.addObject("name", request.getParameter("inputname"));
+		mv.addObject("age", request.getParameter("inputage"));
+		
+		return mv;
+				
 	}
 	
 }
