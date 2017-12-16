@@ -4,13 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.studyspring.vo.UserInfoEnrollRequestVO;
 import com.studyspring.vo.UserInfoVO;
 
 @Repository
 public class UserInfoDaoImpl implements UserInfoDao{
-
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+	
+	
 	@Override
 	public String searchNameDao(Map<String, Object> info) {
 		// TODO Auto-generated method stub
@@ -50,6 +56,19 @@ public class UserInfoDaoImpl implements UserInfoDao{
 		
 		listuser.add(user_three);
 		return listuser;
+	}
+
+	@Override
+	public List<Map<String, Object>> searchUserInfoDBDao(Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		System.out.println("test");
+		return sqlSession.selectList("usermanager.searchuser", params);
+	}
+
+	@Override
+	public int enrollUserInfoDao(UserInfoEnrollRequestVO userInfoEnrollRequestVO) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	
