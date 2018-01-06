@@ -11,4 +11,6 @@ public interface UserInfoDao {
 	public List<UserInfoVO> getUserInfoListDao();
 	public int enrollUserInfoDao(UserInfoEnrollRequestVO userInfoEnrollRequestVO);
 	public List<Map<String, Object>> searchUserInfoDBDao(Map<String, Object> params);
+	public int updateUserInfoDBDao(Map<String, Object> params);
+	public int deleteUserInfoDBDao(Map<String, Object> params);
 }

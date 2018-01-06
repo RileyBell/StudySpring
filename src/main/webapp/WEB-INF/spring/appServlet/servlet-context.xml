@@ -26,7 +26,7 @@
 	<!-- DataSource -->
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"> 
 		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-		<beans:property name="url" value="jdbc:oracle:thin:@192.168.1.6:1521:xe"/>
+		<beans:property name="url" value="jdbc:oracle:thin:@192.168.0.22:1521:xe"/>
 		<beans:property name="username" value="system"/>
 		<beans:property name="password" value="SYSTEM"/>
 	</beans:bean>

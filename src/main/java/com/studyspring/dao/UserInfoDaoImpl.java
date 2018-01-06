@@ -70,6 +70,18 @@ public class UserInfoDaoImpl implements UserInfoDao{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public int updateUserInfoDBDao(Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("usermanager.updateuser", params);
+	}
+
+	@Override
+	public int deleteUserInfoDBDao(Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("usermanager.deleteuser", params);
+	}
 	
 	
 

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,28 @@ public class AjaxController {
 		retVal.put("val", userInfoService.searchUserInfoDBService(params));
 		
 		System.out.println("size: " + userInfoService.searchUserInfoDBService(params).size());
+		
+		return retVal;
+	}
+	
+	@RequestMapping(value = "/updateuserdb", method = RequestMethod.POST, produces = {"application/json"})
+	public @ResponseBody Map<String, Object> updateUserDB(@RequestBody Map<String, Object> params) {
+		Map<String, Object> retVal =new HashMap<String, Object>();
+		
+		System.out.println("ajax call : " + params.get("updateName") + ", " + params.get("updateAge"));
+		
+		retVal.put("resultCode", userInfoService.updateUserInfoDBService(params));
+		
+		return retVal;
+	}
+	
+	@RequestMapping(value = "/deleteuserdb", method = RequestMethod.POST, produces = {"application/json"})
+	public @ResponseBody Map<String, Object> deleteUserDB(@RequestBody Map<String, Object> params) {
+		Map<String, Object> retVal = new HashMap<String, Object>();
+		
+		System.out.println("ajax call : " + params.get("deleteName") + ", " + params.get("deletename"));
+		
+		retVal.put("resultCode", userInfoService.deleteUserInfoDBService(params));
 		
 		return retVal;
 	}
